@@ -8,6 +8,7 @@ public class HelloWorld extends ActionSupport {
 	public static final String MESSAGE = "Struts is up and running ...";
 
 	public String execute() throws Exception {
+		System.out.println("demo");
 		setMessage(MESSAGE);
 		return SUCCESS;
 	}
