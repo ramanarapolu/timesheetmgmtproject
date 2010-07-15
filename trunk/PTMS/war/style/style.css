@@ -1,0 +1,67 @@
+#layout
+{
+font-family:"Arial";
+background-image: url(../images/bg.jpg);
+background-repeat:repeat-y;
+background-position: center 0;
+width:100%;height:100%;
+}
+body,html{
+background-color:C5D67B;
+width:100%;height:100%;
+}
+#header
+{
+font-size:20px;
+background-image: url(../images/clock.gif);
+background-color:C5D67B;
+background-repeat: no-repeat;
+background-position: right 0;
+width:100%;
+border-style:solid;
+border-width:5px;
+}
+#footer
+{
+background-color:C5D67B;
+width:100%;
+bottom:10px;
+font-size:10px;
+}
+.headerheight
+{
+height:120px;
+}
+#basetable{
+	height:100%;width:100%;border-style:solid;border-width:5px;border-color:green;
+}
+#headerrow{
+height: 10%;width:100%;
+}
+#headercol{
+height: 10%;width:100%;border-style:solid;border-width:5px;border-color:green;
+}
+#bodyrow{
+height: 85%;width:100%;
+}
+#bodycol{
+height: 85%;width:100%;
+}
+#bodytable{
+height: 100%;width=100%;border-style:solid;border-width:5px;border-color:green;
+}
+#bodytablerow{
+height: 100%;width:100%;
+}
+#menucol{
+height: 100%;width:10%;border-style:solid;border-width:5px;border-color:green;
+}
+#bodycol{
+height: 100%;width:90%;border-style:solid;border-width:5px;border-color:green;
+}
+#footerrow{
+height: 5%;width:100%;border-style:solid;border-width:5px;border-color:green
+}
+#footercol{
+height: 5%;width:100%;border-style:solid;border-width:5px;border-color:green
+}
