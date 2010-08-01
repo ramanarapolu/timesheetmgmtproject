@@ -17,9 +17,11 @@
 		
 		<action name="*Login" method="{1}" class="com.herguan.cs562.action.Login">
 			<result name="show" type="tiles">login</result>
+			<result name="input" type="tiles">login</result>
 		</action>
 		<action name="home" method="login" class="com.herguan.cs562.action.Login">
 			<result name="success" type="tiles">home</result>
+			<result name="input" type="tiles">login</result>
 		</action>
 		<action name="*Link" method="{1}" class="com.herguan.cs562.action.LinkAction">
             <result name="welcome" type="tiles">welcome</result>
