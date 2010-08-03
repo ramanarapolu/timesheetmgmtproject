@@ -1,5 +1,6 @@
 package com.herguan.cs562.action;
 
+import java.awt.Image;
 import java.util.Date;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import com.herguan.cs562.model.Role;
 import com.herguan.cs562.model.Staff;
 import com.herguan.cs562.model.Student;
 import com.herguan.cs562.model.User;
+//import com.google.appengine.api.images.*;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class Login extends ActionSupport implements SessionAware {
@@ -176,6 +178,7 @@ public class Login extends ActionSupport implements SessionAware {
 			session.put("User", user);
 			System.out.println(session.get("UserName"));
 			addActionMessage("You are successfully logged in.");
+			
 			return SUCCESS;
 		}
 
