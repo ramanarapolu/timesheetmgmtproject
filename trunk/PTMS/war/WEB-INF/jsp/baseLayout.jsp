@@ -5,7 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<style type="text/css"> @import "<%=request.getContextPath() %>/style/basestyle.css";</style>
+<style type="text/css">
+@import "<%=request.getContextPath()%>/style/basestyle.css";
+</style>
 
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
 </head>
@@ -19,8 +21,18 @@
 		<td id="bodycol">
 		<table id="bodytable">
 			<tr id="bodytablerow">
-				<td id="menutablecol"><tiles:insertAttribute name="menu" /></td>
-				<td id="bodytablecol"><tiles:insertAttribute name="body" /></td>
+				<td id="menutablecol">
+					<tiles:insertAttribute name="menu" />
+				</td>
+				<td id="bodytablecol">
+					<table id="bodytable">
+						<tr id="bodytable">
+						<td id="bodytable">
+							<tiles:insertAttribute name="body" />
+						</td>
+						</tr>
+					</table>
+				</td>
 			</tr>
 		</table>
 		</td>

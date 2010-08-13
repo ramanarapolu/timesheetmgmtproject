@@ -13,7 +13,7 @@
 Welcome to Timesheet Management System. Please login!
 <div class="floatright"><s:actionerror /> <s:form action="home" method="post">
 	<s:textfield name="username" label="UserName"></s:textfield>
-	<s:textfield name="password" label="Password"></s:textfield>
+	<s:password name="password" label="Password"></s:password>
 	<s:submit name="login" value="login"></s:submit>
 </s:form></div>
 

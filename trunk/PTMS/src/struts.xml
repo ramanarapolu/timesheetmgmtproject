@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
 "http://struts.apache.org/dtds/struts-2.0.dtd">
-<struts>  
+<struts>
 
-	<package name="timesystem" extends="struts-default">
-	
+	<package name="timesystem" namespace="/struts" extends="struts-default">
+
 		<result-types>
-		<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"></result-type>
-        </result-types>
-        
+			<result-type name="tiles"
+				class="org.apache.struts2.views.tiles.TilesResult"></result-type>
+		</result-types>
+		<action name="logout" method="logout" class="com.herguan.cs562.action.Logout">
+			<result>/WEB-INF/jsp/logout.jsp</result>
+		</action>
 
 		<!--  http://localhost:8080/helloworld/HelloWorld.action -->
 		<action name="HelloWorld" class="com.herguan.cs562.action.HelloWorld">
 			<result>/WEB-INF/helloworld.jsp</result>
 		</action>
-		
+		<action name="preload" method="preload"
+			class="com.herguan.cs562.action.Preload">
+			<result name="success" type="tiles">home</result>
+		</action>
 		<action name="*Login" method="{1}" class="com.herguan.cs562.action.Login">
 			<result name="show" type="tiles">login</result>
 			<result name="input" type="tiles">login</result>
@@ -23,28 +29,72 @@
 			<result name="success" type="tiles">home</result>
 			<result name="input" type="tiles">login</result>
 		</action>
-		<action name="*Link" method="{1}" class="com.herguan.cs562.action.LinkAction">
-            <result name="welcome" type="tiles">welcome</result>
-            <result name="friends" type="tiles">friends</result>
-            <result name="office" type="tiles">office</result>
-        </action>
-        
-        <action name="*Time" method="{1}" class="com.herguan.cs562.action.TimesheetAction">
-            <result name="view" type="tiles">viewTime</result>
-            <result name="submit" type="tiles">submitTime</result>
-            <result name="approve" type="tiles">approveTime</result>
-        </action>
-        
-        <action name="createUser" method="createUser" class="com.herguan.cs562.action.AdminAction">
-            <result name="User" type="tiles">createUser</result>
-        </action>
-        <action name="createProject" method="createProject" class="com.herguan.cs562.action.AdminAction">
-            <result name="Project" type="tiles">createProject</result>
-        </action>
-        <action name="createDepartment" method="createDepartment" class="com.herguan.cs562.action.AdminAction">
-            <result name="Department" type="tiles">createDepartment</result>
-        </action>
-        
+		<action name="*Link" method="{1}"
+			class="com.herguan.cs562.action.LinkAction">
+			<result name="welcome" type="tiles">welcome</result>
+			<result name="friends" type="tiles">friends</result>
+			<result name="office" type="tiles">office</result>
+		</action>
+
+		<action name="*Time" method="{1}"
+			class="com.herguan.cs562.action.TimesheetAction">
+			<result name="view" type="tiles">viewTime</result>
+			<result name="showSubmit" type="tiles">submitTime</result>
+			<result name="submit" type="tiles">home</result>
+			<result name="approve" type="tiles">approveTime</result>
+			<result name="input" type="tiles">home</result>
+		</action>
+
+		<action name="ListingAction" class="com.herguan.cs562.action.ListingAction">
+			<result name="success" type="tiles">listing</result>
+		</action>
+		<action name="DetailAction" class="com.herguan.cs562.action.DetailAction">
+			<result name="success" type="tiles">detail</result>
+		</action>
+		<action name="AjaxCall" method="handleAjax"
+			class="com.herguan.cs562.action.TimesheetAction">
+			<result>/WEB-INF/jsp/ajaxTable.jsp</result>
+		</action>
+		<action name="viewAjaxCall" method="handleViewAjax"
+			class="com.herguan.cs562.action.TimesheetAction">
+			<result>/WEB-INF/jsp/viewAjaxTable.jsp</result>
+		</action>
+
+		<action name="createUser" method="createUser"
+			class="com.herguan.cs562.action.AdminAction">
+			<result name="User" type="tiles">createUser</result>
+		</action>
+
+		<action name="createProject" method="createProject"
+			class="com.herguan.cs562.action.AdminAction">
+			<result name="Project" type="tiles">home</result>
+			<result name="input" type="tiles">home</result>
+		</action>
+		<action name="showCreateProject" method="showCreateProject"
+			class="com.herguan.cs562.action.AdminAction">
+			<result name="Project" type="tiles">createProject</result>
+		</action>
+		<action name="showProject" method="showProject"
+			class="com.herguan.cs562.action.AdminAction">
+			<result name="Project" type="tiles">showProject</result>
+		</action>
+
+
+		<action name="createDepartment" method="createDepartment"
+			class="com.herguan.cs562.action.AdminAction">
+			<result name="Department" type="tiles">home</result>
+			<result name="input" type="tiles">createDepartment</result>
+		</action>
+		<action name="showDepartment" method="showDepartment"
+			class="com.herguan.cs562.action.AdminAction">
+			<result name="Department" type="tiles">showDepartment</result>
+		</action>
+		<action name="showCreateDepartment" method="showCreateDepartment"
+			class="com.herguan.cs562.action.AdminAction">
+			<result name="Department" type="tiles">createDepartment</result>
+		</action>
+
+
 	</package>
 </struts>
 

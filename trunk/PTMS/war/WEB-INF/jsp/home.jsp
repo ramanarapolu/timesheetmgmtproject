@@ -3,5 +3,5 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <style type="text/css"> @import "<%=request.getContextPath() %>/style/basestyle.css";</style>
-<div id="bodystyle"><s:actionmessage /></div>
+<div id="bodystyle"><s:actionmessage /><br></br><s:actionerror/></div>
 
