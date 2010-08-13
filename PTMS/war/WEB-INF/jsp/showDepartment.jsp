@@ -12,16 +12,24 @@
 </style>
 </head>
 <body id="layout">
+<div id="bodyheader">View Departments</div><br></br>
+<div id="bodystyle">
+<table id="datatable">
+	<tr>
+		<th><s:text name="Department Code" /></th>
+		<th><s:text name="Department Name" /></th>
+	</tr>
+	<s:iterator value="departments" status="status">
+		<tr class="<s:if test="#status.even">even</s:if><s:else>odd</s:else>">
+			<td><s:property value="deptCode" /></td>
+			<td><s:property value="deptName" /></td>
+		</tr>
+	</s:iterator>
+</table>
+<br></br>
 
-<div id="bodyheader">Create Department</div><br></br>
-
-<div id="bodystyle"><s:actionerror /> 
-	<s:form action="createDepartment" method="post">
-	<s:textfield name="deptID" label="Department Code"></s:textfield>
-	<s:textfield name="deptName" label="Department Name"></s:textfield>
-	<s:submit value="Create Department"></s:submit>
-	</s:form>
 </div>
+
 
 </body>
 </html>

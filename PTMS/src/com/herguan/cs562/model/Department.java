@@ -6,15 +6,18 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 import com.google.appengine.api.datastore.Key;
-
 @PersistenceCapable
-public class Food {
+public class Department {
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Key key;
 	
 	@Persistent
-	private String foodName;
+	private String deptCode;
+
+	@Persistent
+	private String deptName;
+
 	public Key getKey() {
 		return key;
 	}
@@ -23,12 +26,23 @@ public class Food {
 		this.key = key;
 	}
 
-	public String getFoodName() {
-		return foodName;
+	public String getDeptCode() {
+		return deptCode;
 	}
 
-	public void setFoodName(String foodName) {
-		this.foodName = foodName;
+	public void setDeptCode(String deptCode) {
+		this.deptCode = deptCode;
 	}
+
+	public String getDeptName() {
+		return deptName;
+	}
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+	
+	
+	
 
 }

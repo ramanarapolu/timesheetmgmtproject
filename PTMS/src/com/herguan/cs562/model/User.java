@@ -2,6 +2,7 @@
 package com.herguan.cs562.model;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
@@ -13,15 +14,9 @@ import com.google.appengine.api.datastore.Key;
 @PersistenceCapable
 public class User {
 	@PrimaryKey
-    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-    private Key key;
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key;
 
-	@Persistent
-    private Key studentKey;
-	
-	@Persistent
-    private Key staffKey;
-	
 	@Persistent
 	private String login;
 
@@ -36,7 +31,8 @@ public class User {
 
 	@Persistent
 	private Key rolekey;
-	
+
+	@Persistent
 	private String role;
 
 	@Persistent
@@ -51,7 +47,94 @@ public class User {
 	@Persistent
 	private String updatedBy;
 
+    @Persistent    
+	private Set<Key> allocationSet;
 	
+
+	private String keyToString;
+	
+	@Persistent
+	private Integer employeeID;
+
+	@Persistent
+	private Key deptKey;
+
+	@Persistent
+	private String deptName;
+	
+	@Persistent
+	private Integer studentID;
+
+	@Persistent
+	private String programID;
+
+	@Persistent
+	private String programName;
+
+	public Key getRolekey() {
+		return rolekey;
+	}
+
+	public void setRolekey(Key rolekey) {
+		this.rolekey = rolekey;
+	}
+
+	public Integer getEmployeeID() {
+		return employeeID;
+	}
+
+	public void setEmployeeID(Integer employeeID) {
+		this.employeeID = employeeID;
+	}
+
+	public Key getDeptKey() {
+		return deptKey;
+	}
+
+	public void setDeptKey(Key deptKey) {
+		this.deptKey = deptKey;
+	}
+
+	public String getDeptName() {
+		return deptName;
+	}
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+
+	public Integer getStudentID() {
+		return studentID;
+	}
+
+	public void setStudentID(Integer studentID) {
+		this.studentID = studentID;
+	}
+
+	public String getProgramID() {
+		return programID;
+	}
+
+	public void setProgramID(String programID) {
+		this.programID = programID;
+	}
+
+	public String getProgramName() {
+		return programName;
+	}
+
+	public void setProgramName(String programName) {
+		this.programName = programName;
+	}
+
+	public String getKeyToString() {
+		return keyToString;
+	}
+
+	public void setKeyToString(String keyToString) {
+		this.keyToString = keyToString;
+		System.out.println("in key to string :" + keyToString);
+	}
 
 	public Key getKey() {
 		return key;
@@ -77,10 +160,6 @@ public class User {
 		return lastName;
 	}
 
-	public Key getRoleId() {
-		return rolekey;
-	}
-
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -97,7 +176,7 @@ public class User {
 		return updatedBy;
 	}
 
-		public void setLogin(String login) {
+	public void setLogin(String login) {
 		this.login = login;
 	}
 
@@ -113,13 +192,11 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public void setRoleKey(Key rolekey) {
-		this.rolekey = rolekey;
-	}
 
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+
 
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
@@ -133,30 +210,20 @@ public class User {
 		this.updatedBy = updatedBy;
 	}
 
-	public Key getStudentKey() {
-		return studentKey;
-	}
-
-	public void setStudentKey(Key studentKey) {
-		this.studentKey = studentKey;
-	}
-
-	public Key getStaffKey() {
-		return staffKey;
-	}
-
-	public void setStaffKey(Key staffKey) {
-		this.staffKey = staffKey;
-	}
-	
-	public void setRole(String role){
+	public void setRole(String role) {
 		this.role = role;
 	}
-	
-	public String getRole(){
+
+	public String getRole() {
 		return role;
 	}
 
+	public Set<Key> getAllocationSet() {
+		return allocationSet;
+	}
 
-	
+	public void setAllocationSet(Set<Key> allocationSet) {
+		this.allocationSet = allocationSet;
+	}
+
 }

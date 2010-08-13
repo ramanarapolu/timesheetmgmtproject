@@ -35,7 +35,19 @@
   <definition name="submitTime" extends="baseLayout">
       <put-attribute name="title"  value="Submit timesheet"/>
       <put-attribute name="body"   value="/WEB-INF/jsp/submitTime.jsp"/>     
-  </definition> 
+  </definition>
+    <definition name="listing" extends="baseLayout">
+      <put-attribute name="title"  value="Submit timesheet"/>
+      <put-attribute name="body"   value="/WEB-INF/listing.jsp"/>     
+  </definition>
+     <definition name="detail" extends="baseLayout">
+      <put-attribute name="title"  value="Submit timesheet"/>
+      <put-attribute name="body"   value="/WEB-INF/details.jsp"/>     
+  </definition>
+  <definition name="ajaxTable" extends="baseLayout">
+      <put-attribute name="title"  value="Submit timesheet"/>
+      <put-attribute name="body"   value="/WEB-INF/jsp/ajaxTable.jsp"/>     
+  </definition>  
   <definition name="approveTime" extends="baseLayout">
       <put-attribute name="title"  value="Approve timesheet"/>
       <put-attribute name="body"   value="/WEB-INF/jsp/approveTime.jsp"/>     
@@ -45,11 +57,19 @@
       <put-attribute name="body"   value="/WEB-INF/jsp/createUser.jsp"/>     
   </definition>
   <definition name="createProject" extends="baseLayout">
-      <put-attribute name="title"  value="Submit timesheet"/>
+      <put-attribute name="title"  value="Create project"/>
       <put-attribute name="body"   value="/WEB-INF/jsp/createProject.jsp"/>     
-  </definition> 
+  </definition>
+    <definition name="showProject" extends="baseLayout">
+      <put-attribute name="title"  value="View projects"/>
+      <put-attribute name="body"   value="/WEB-INF/jsp/showProject.jsp"/>     
+  </definition>  
   <definition name="createDepartment" extends="baseLayout">
-      <put-attribute name="title"  value="Approve timesheet"/>
+      <put-attribute name="title"  value="Create Department"/>
       <put-attribute name="body"   value="/WEB-INF/jsp/createDepartment.jsp"/>     
   </definition>  
+  <definition name="showDepartment" extends="baseLayout">
+      <put-attribute name="title"  value="View Department"/>
+      <put-attribute name="body"   value="/WEB-INF/jsp/showDepartment.jsp"/>     
+  </definition>
 </tiles-definitions>

@@ -5,15 +5,6 @@
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 	<servlet>
-		<servlet-name>TimeResourceSystem2</servlet-name>
-		<servlet-class>com.herguan.cs562.TimeResourceSystem2Servlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>TimeResourceSystem2</servlet-name>
-		<url-pattern>/timeresourcesystem2</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
 		<servlet-name>RemoteApi</servlet-name>
 		<servlet-class>com.google.apphosting.utils.remoteapi.RemoteApiServlet</servlet-class>
 	</servlet>
@@ -46,7 +37,11 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 
 	<filter-mapping>
 		<filter-name>struts2</filter-name>
-		<url-pattern>*.action</url-pattern>
+		<url-pattern>/struts/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/*.action</url-pattern>
 	</filter-mapping>
 	
 	<listener>
