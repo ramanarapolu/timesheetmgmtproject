@@ -8,7 +8,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.struts2.interceptor.SessionAware;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
 
 import com.google.appengine.api.datastore.KeyFactory;
 import com.herguan.cs562.dao.TimesheetDAO;
@@ -18,9 +20,10 @@ import com.herguan.cs562.model.TimesheetScreenVO;
 import com.herguan.cs562.model.TimesheetStatusEnum;
 import com.herguan.cs562.model.User;
 import com.herguan.cs562.model.ViewTimesheetScreenVO;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class TimesheetAction extends ActionSupport implements SessionAware {
+public class TimesheetAction extends ActionSupport {
 	private static final long serialVersionUID = -2613425890762568273L;
 
 	private TimesheetScreenVO timesheetScreenVO;
@@ -47,7 +50,6 @@ public class TimesheetAction extends ActionSupport implements SessionAware {
 
 	private User user;
 
-	private Map session;
 	private String chosenWeek;
 	private List<String> weeks;
 	private List<Timesheet> timesheetList;
@@ -149,10 +151,6 @@ public class TimesheetAction extends ActionSupport implements SessionAware {
 		this.weeks = weeks;
 	}
 
-	public Map getSession() {
-		return session;
-	}
-
 	public User getUser() {
 		return user;
 	}
@@ -170,11 +168,12 @@ public class TimesheetAction extends ActionSupport implements SessionAware {
 	}
 
 	public String view() {
-		System.out.println("user in session : " + session.get("User"));
-		user = (User) session.get("User");
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		System.out.println("user in session : " + session.getAttribute(("User")));
+		user = (User) session.getAttribute("User");
 		viewTimesheetScreenVO = TimesheetDAO.getViewTimesheetScreenVO(user);
 		if (viewTimesheetScreenVO != null) {
-			session.put("viewTsVO", viewTimesheetScreenVO);
+			session.setAttribute("viewTsVO", viewTimesheetScreenVO);
 			// weeks = timesheetScreenVO.getWeeks();
 			System.out.println(" Vo " + viewTimesheetScreenVO);
 			System.out.println(" Vo " + user.getRole());
@@ -189,6 +188,7 @@ public class TimesheetAction extends ActionSupport implements SessionAware {
 
 	public String submit() {
 		try {
+			HttpSession session = ServletActionContext.getRequest().getSession();
 			System.out.println("in submit : " + chosenWeek + " : "
 					+ timesheetAllocationVO.getSundayHours());
 			System.out.println("in submit : "
@@ -201,7 +201,7 @@ public class TimesheetAction extends ActionSupport implements SessionAware {
 					+ timesheetAllocationVO.getFridayHours() + " :"
 					+ timesheetAllocationVO.getSaturdayHours() + ":");
 
-			timesheetScreenVO = (TimesheetScreenVO) session.get("tsVO");
+			timesheetScreenVO = (TimesheetScreenVO) session.getAttribute("tsVO");
 			String[] weekArray = chosenWeek.split(",");
 
 			String week = weekArray[0];
@@ -277,7 +277,7 @@ public class TimesheetAction extends ActionSupport implements SessionAware {
 			ts.setWeekId(calendar.get(Calendar.YEAR) + "-"
 					+ calendar.get(Calendar.WEEK_OF_YEAR));
 
-			User user = (User) session.get("User");
+			User user = (User) session.getAttribute("User");
 			ts.setKey(KeyFactory.createKey(Timesheet.class.getSimpleName(), ts
 					.getWeekId()
 					+ timesheetScreenVO.getProject().getProjectCode()
@@ -286,7 +286,7 @@ public class TimesheetAction extends ActionSupport implements SessionAware {
 			TimesheetDAO.createTimesheet(ts);
 			TimesheetDAO
 					.updateAllocation(timesheetScreenVO.getAllocation(), ts);
-			session.remove("tsVO");
+			session.removeAttribute("tsVO");
 			addActionMessage("Timesheet created");
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -297,10 +297,11 @@ public class TimesheetAction extends ActionSupport implements SessionAware {
 
 	public String handleAjax() {
 		try {
+			HttpSession session = ServletActionContext.getRequest().getSession();
 			System.out.println(" chosen week in AJAX" + chosenWeek);
 			System.out.println(" chosen week in AJAX" + timesheetScreenVO);
 			// Do something in respose to the ajax call
-			timesheetScreenVO = (TimesheetScreenVO) session.get("tsVO");
+			timesheetScreenVO = (TimesheetScreenVO) session.getAttribute("tsVO");
 
 			String[] weekArray = chosenWeek.split(",");
 
@@ -355,11 +356,12 @@ public class TimesheetAction extends ActionSupport implements SessionAware {
 
 	public String handleViewAjax() {
 		try {
+			HttpSession session = ServletActionContext.getRequest().getSession();
 			System.out.println(" handleViewAjax chosen week in AJAX"
 					+ chosenWeek);
 			System.out.println(" chosen week in AJAX" + timesheetScreenVO);
 			viewTimesheetScreenVO = (ViewTimesheetScreenVO) session
-					.get("viewTsVO");
+					.getAttribute("viewTsVO");
 			String[] weekArray = chosenWeek.split(",");
 
 			String week = weekArray[0];
@@ -386,12 +388,13 @@ public class TimesheetAction extends ActionSupport implements SessionAware {
 	}
 
 	public String showSubmit() {
-		System.out.println("user in session : " + session.get("User"));
-		user = (User) session.get("User");
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		System.out.println("user in session : " + session.getAttribute("User"));
+		user = (User) session.getAttribute("User");
 
 		timesheetScreenVO = TimesheetDAO.getTimesheetScreenVO(user);
 		if (timesheetScreenVO != null) {
-			session.put("tsVO", timesheetScreenVO);
+			session.setAttribute("tsVO", timesheetScreenVO);
 			// weeks = timesheetScreenVO.getWeeks();
 			System.out.println(" Vo " + timesheetScreenVO);
 			System.out.println(" Vo " + user.getRole());
@@ -450,9 +453,4 @@ public class TimesheetAction extends ActionSupport implements SessionAware {
 		return "approve";
 	}
 
-	@Override
-	public void setSession(Map session) {
-		this.session = session;
-
-	}
 }

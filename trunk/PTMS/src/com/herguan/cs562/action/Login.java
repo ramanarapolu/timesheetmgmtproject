@@ -2,16 +2,18 @@ package com.herguan.cs562.action;
 
 import java.util.Map;
 
-import org.apache.struts2.interceptor.SessionAware;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
 
 import com.herguan.cs562.dao.UserDAO;
 import com.herguan.cs562.model.User;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class Login extends ActionSupport implements SessionAware {
+public class Login extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
-	private Map session;
+	
 	private String username;
 	private String password;
 
@@ -20,15 +22,16 @@ public class Login extends ActionSupport implements SessionAware {
 	}
 
 	public String login() {
+		
 		User user = validateUserAuthentication();
 
 		if (user != null) {
 
-			session.put("UserName", user.getFirstName());
-			session.put("User", user);
-			System.out.println(session.get("UserName"));
+			HttpSession session = ServletActionContext.getRequest().getSession();
+			session.setAttribute("User", user);
+			session.setAttribute("UserName", user.getFirstName());
 			addActionMessage("You are successfully logged in.");
-			
+
 			return SUCCESS;
 		}
 
@@ -67,10 +70,6 @@ public class Login extends ActionSupport implements SessionAware {
 		this.password = password;
 	}
 
-	@Override
-	public void setSession(Map session) {
-		this.session = session;
-
-	}
+	
 
 }

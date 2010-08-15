@@ -1,5 +1,6 @@
 package com.herguan.cs562.model;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
@@ -11,7 +12,7 @@ import javax.jdo.annotations.PrimaryKey;
 import com.google.appengine.api.datastore.Key;
 
 @PersistenceCapable
-public class Timesheet {
+public class Timesheet implements Serializable{
 	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)

@@ -1,8 +1,9 @@
 package com.herguan.cs562.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
-public enum WeekEnum {
+public enum WeekEnum implements Serializable{
 	CURRENT {
 	    public String toString() {
 	    	Calendar cal = Calendar.getInstance();

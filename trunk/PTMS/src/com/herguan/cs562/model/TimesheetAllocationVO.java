@@ -1,6 +1,8 @@
 package com.herguan.cs562.model;
 
-public class TimesheetAllocationVO {
+import java.io.Serializable;
+
+public class TimesheetAllocationVO implements Serializable{
 
 	private String projectDisplay;
 

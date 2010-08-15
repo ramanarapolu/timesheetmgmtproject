@@ -12,7 +12,8 @@
 </style>
 </head>
 <body id="layout">
-<div id="bodyheader">View Departments</div><br></br>
+<div id="bodyheader">View Departments</div>
+<br></br>
 <div id="bodystyle">
 <table id="datatable">
 	<tr>
@@ -21,8 +22,11 @@
 	</tr>
 	<s:iterator value="departments" status="status">
 		<tr class="<s:if test="#status.even">even</s:if><s:else>odd</s:else>">
-			<td><s:property value="deptCode" /></td>
-			<td><s:property value="deptName" /></td>
+			<td><a href="<s:url action="editDepartment"><s:param name="deptID" value="deptCode"/>
+				<s:param name="deptName" value="deptName"/></s:url>">
+					<s:property value="deptCode" /></a></td>
+
+			<td class="nowrap"><s:property value="deptName" /></td>
 		</tr>
 	</s:iterator>
 </table>

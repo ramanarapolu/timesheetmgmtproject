@@ -47,13 +47,7 @@ import="com.herguan.cs562.model.User"
 	<%if(((User)session.getAttribute("User")).getRole().equals("Admin")){ %>
 	<li>Admin
 	<ul>
-		
-		<li>Create/View User
-		<ul>
-			<li><a href="<s:url action="showCreateUser"/>">Create user</a></li>
-			<li><a href="<s:url action="showUser"/>">View users</a></li>
-		</ul>
-		</li>
+		<li><a href="<s:url action="createUser"/>">Create user</a></li>
 		<li>Create/View project
 		<ul>
 			<li><a href="<s:url action="showCreateProject"/>">Create

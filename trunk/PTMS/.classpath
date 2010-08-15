@@ -17,9 +17,9 @@
 	<classpathentry kind="lib" path="C:/Users/Amit Singh/Documents/Vidya/backup052610/Herguan/Projects/CS562/PTMS/war/WEB-INF/lib/struts2-dojo-plugin-2.1.8.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Amit Singh/Documents/Vidya/backup052610/Herguan/Projects/CS562/PTMS/war/WEB-INF/lib/struts2-tiles-plugin-2.1.8.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Amit Singh/Documents/Vidya/backup052610/Herguan/Projects/CS562/PTMS/war/WEB-INF/lib/struts-menu-2.4.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Amit Singh/Documents/Vidya/backup052610/Herguan/Projects/CS562/PTMS/war/WEB-INF/lib/tiles-api-2.0.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Amit Singh/Documents/Vidya/backup052610/Herguan/Projects/CS562/PTMS/war/WEB-INF/lib/tiles-core-2.0.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Amit Singh/Documents/Vidya/backup052610/Herguan/Projects/CS562/PTMS/war/WEB-INF/lib/tiles-jsp-2.0.6.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Amit Singh/Documents/Vidya/backup052610/Herguan/Projects/CS562/PTMS/war/WEB-INF/lib/xwork-core-2.1.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Amit Singh/Documents/Vidya/backup052610/Herguan/Projects/CS562/PTMS/war/WEB-INF/lib/tiles-api-2.0.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Amit Singh/Documents/Vidya/backup052610/Herguan/Projects/CS562/PTMS/war/WEB-INF/lib/tiles-core-2.0.7.jar" sourcepath="C:/Users/Amit Singh/Documents/Vidya/backup052610/Sansa/01 Downloads/tiles-2.0.7-src/tiles-2.0.7"/>
+	<classpathentry kind="lib" path="C:/Users/Amit Singh/Documents/Vidya/backup052610/Herguan/Projects/CS562/PTMS/war/WEB-INF/lib/tiles-jsp-2.0.7.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

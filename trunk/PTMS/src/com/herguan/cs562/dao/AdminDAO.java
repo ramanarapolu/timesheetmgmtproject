@@ -18,6 +18,36 @@ import com.herguan.cs562.model.Role;
 import com.herguan.cs562.model.User;
 
 public class AdminDAO {
+	
+	@SuppressWarnings("unchecked")
+	public static List<Role> getRoles() {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Query query = pm.newQuery(Role.class);
+		List<Role> results;
+		List<Role> returnList;
+		try {
+			results = (List<Role>) query.execute();
+			returnList = results;
+			System.out.println("Success list" + returnList);
+		} finally {
+			pm.close();
+		}
+		return results;
+	}
+	public static void editDepartment(Department dept) {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+
+		try {
+			Department deptDB = pm.getObjectById(Department.class, dept
+					.getKey());
+			deptDB.setDeptName(dept.getDeptName());
+			pm.makePersistent(deptDB);
+			System.out.println("Success update");
+		} finally {
+			pm.close();
+		}
+	}
+
 	public static void createDepartment(Department dept) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 
@@ -74,8 +104,8 @@ public class AdminDAO {
 						+ project.getProjectCode()));
 				allocation.setProjectKey(project.getKey());
 				allocation.setProjectName(project.getProjectName());
-				//allocation.setUserKey(u.getKey());
-				//allocation.setUser(u);
+				// allocation.setUserKey(u.getKey());
+				// allocation.setUser(u);
 				allocation.setIsActive(Boolean.TRUE);
 				if (u.getAllocationSet() != null) {
 					for (Iterator<Key> it1 = u.getAllocationSet().iterator(); it1
@@ -92,6 +122,129 @@ public class AdminDAO {
 					u.setAllocationSet(allocationSet);
 				}
 				pm.makePersistent(allocation);
+				pm.makePersistent(u);
+			}
+
+		} finally {
+			pm.close();
+		}
+	}
+
+	public static void editProject(Project project) {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+
+		try {
+			Project projectDB = pm.getObjectById(Project.class, project
+					.getKey());
+			projectDB.setDeptKey(project.getDeptKey());
+			projectDB.setDeptName(project.getDeptName());
+			projectDB.setManagerKey(project.getManagerKey());
+			projectDB.setProjectCode(project.getProjectCode());
+			projectDB.setProjectName(project.getProjectName());
+			Set<Key> tosetInProject = new HashSet<Key>();
+			tosetInProject.addAll(project.getUsersTeam());
+			
+
+			// comparing allocations
+			Set<Key> userTeam = project.getUsersTeam();
+			Set<Key> userTeamDB =projectDB.getUsersTeam();
+			
+			Key userKey = null;
+			for (Iterator<Key> it2 = userTeam.iterator(); it2.hasNext();) {
+				userKey = it2.next();
+				System.out.println("userteam key"+userKey);
+				System.out.println("userteam key"+userTeamDB.contains(userKey));
+				
+				if (userTeamDB.contains(userKey)) {
+					userTeamDB.remove(userKey);
+					userTeam.remove(userKey);
+
+				}
+			}
+			
+			//projectDB.setUsersTeam(project.getUsersTeam());
+			System.out.println(" user team db " + userTeamDB);
+			System.out.println(" user team  " + userTeam);
+			projectDB.setUsersTeam(tosetInProject);
+			pm.makePersistent(projectDB);
+			System.out.println("Success editing update");
+
+			Key allocationKey = null;
+			User u = null;
+
+			Allocation allocation = null;
+			Allocation allocationDB = null;
+			Allocation allocationInUser = null;
+			Set<Key> allocationSet = null;
+
+			updateManagersInUsers();
+
+			for (Iterator<Key> it = userTeamDB.iterator(); it.hasNext();) {
+				userKey = it.next();
+				u = pm.getObjectById(User.class, userKey);
+				if (u.getAllocationSet() != null
+						&& u.getAllocationSet().contains(
+								KeyFactory.createKey(Allocation.class
+										.getSimpleName(), u.getLogin()
+										+ project.getProjectCode()))) {
+					allocationDB = pm.getObjectById(Allocation.class,
+							KeyFactory.createKey(Allocation.class
+									.getSimpleName(), u.getLogin()
+									+ project.getProjectCode()));
+					allocationDB.setIsActive(Boolean.FALSE);
+					pm.makePersistent(allocationDB);
+					/*u.getAllocationSet().remove(
+							KeyFactory.createKey(Allocation.class
+									.getSimpleName(), u.getLogin()
+									+ project.getProjectCode()));
+					pm.makePersistent(u);*/
+				}
+
+			}
+
+			for (Iterator<Key> it = userTeam.iterator(); it.hasNext();) {
+				userKey = it.next();
+				u = pm.getObjectById(User.class, userKey);
+				if (u.getAllocationSet() != null
+						&& u.getAllocationSet().contains(
+								KeyFactory.createKey(Allocation.class
+										.getSimpleName(), u.getLogin()
+										+ project.getProjectCode()))) {
+					allocationDB = pm.getObjectById(Allocation.class,
+							KeyFactory.createKey(Allocation.class
+									.getSimpleName(), u.getLogin()
+									+ project.getProjectCode()));
+				} else {
+					allocationDB = new Allocation();
+					allocationDB.setKey(KeyFactory.createKey(Allocation.class
+							.getSimpleName(), u.getLogin()
+							+ project.getProjectCode()));
+				}
+
+				allocationDB.setProjectKey(project.getKey());
+				allocationDB.setProjectName(project.getProjectName());
+				// allocation.setUserKey(u.getKey());
+				// allocation.setUser(u);
+				allocationDB.setIsActive(Boolean.TRUE);
+				if (u.getAllocationSet() != null) {
+					for (Iterator<Key> it1 = u.getAllocationSet().iterator(); it1
+							.hasNext();) {
+						allocationKey = it1.next();
+						allocationInUser = pm.getObjectById(Allocation.class,
+								allocationKey);
+						if (!allocationKey.equals(KeyFactory.createKey(
+								Allocation.class.getSimpleName(), u.getLogin()
+										+ project.getProjectCode()))) {
+							allocationInUser.setIsActive(Boolean.FALSE);
+						}
+					}
+					u.getAllocationSet().add(allocationDB.getKey());
+				} else {
+					allocationSet = new HashSet<Key>();
+					allocationSet.add(allocationDB.getKey());
+					u.setAllocationSet(allocationSet);
+				}
+				pm.makePersistent(allocationDB);
 				pm.makePersistent(u);
 			}
 
@@ -126,12 +279,11 @@ public class AdminDAO {
 
 			}
 
-			
 			userQuery = pm.newQuery(User.class, "role == paramRole");
 			userQuery.declareParameters("java.lang.String paramRole");
 
 			userResults = (List<User>) userQuery.execute("Supervisor");
-			
+
 			User supervisors = null;
 			if (userResults != null && userResults.size() > 0) {
 				for (Iterator<User> it1 = userResults.iterator(); it1.hasNext();) {
@@ -146,9 +298,9 @@ public class AdminDAO {
 				}
 
 			}
-			
+
 		} finally {
-			
+
 			pm.close();
 		}
 

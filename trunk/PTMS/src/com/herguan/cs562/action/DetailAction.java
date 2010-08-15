@@ -5,10 +5,12 @@ import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class DetailAction extends ActionSupport {
+public class DetailAction extends ActionSupport{
 	private String lst;
 	private List lstList = null;
 	private List lstList2 = null;
+
+	
 
 	public String execute() throws Exception {
 

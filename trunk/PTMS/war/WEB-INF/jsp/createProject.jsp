@@ -14,7 +14,7 @@
 </head>
 <body id="layout">
 
-<div id="bodyheader">Create Project</div>
+<div id="bodyheader">Create/Edit Project</div>
 <br></br>
 
 <div id="bodystyle"><s:actionerror /> 
@@ -23,7 +23,7 @@
 	<s:textfield name="projectName" label="Project Name"></s:textfield>
 	<s:select label="Department" name="deptID" list="departments"
 		listKey="deptCode" listValue="deptName" required="true"
-		value="%{departments.{deptCode}}" />
+		value="deptName" />
 	<s:select label="Manager" name="manager" list="staffUsers"
 		listKey="%{keyToString}" 
 		listValue="%{lastName + ' ' +firstName}" 
@@ -31,7 +31,13 @@
 	<s:select label="Team" name="team" list="allUsers"
 		listKey="%{key}"  listValue="%{lastName + ' ' +firstName}" required="true"
 		multiple="true"/>
-	<s:submit value="Create Project"></s:submit>
+	
+	<s:if test="actionName=='editProject'">
+		<s:submit name="actionName" value="Edit Project"></s:submit>
+	</s:if>
+	<s:if test="actionName=='createProject'">
+		<s:submit name="actionName" value="Create Project"></s:submit>
+	</s:if>
 </s:form></div>
 
 </body>
