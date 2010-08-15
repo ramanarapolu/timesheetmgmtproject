@@ -1,6 +1,8 @@
 package com.herguan.cs562.model;
 
-public enum TimesheetStatusEnum {
+import java.io.Serializable;
+
+public enum TimesheetStatusEnum implements Serializable{
 	
 	APPROVED {
 	    public String toString() {

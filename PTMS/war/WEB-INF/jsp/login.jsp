@@ -6,7 +6,7 @@
 <div id="header">
 <table>
 	<tr>
-		<td class="headerheight">Timesheet Management System</td>
+		<td class="headerheight"></td>
 	</tr>
 </table>
 </div>

@@ -1,5 +1,6 @@
 package com.herguan.cs562.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -9,7 +10,7 @@ import javax.jdo.annotations.PrimaryKey;
 
 import com.google.appengine.api.datastore.Key;
 @PersistenceCapable
-public class Project {
+public class Project implements Serializable{
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Key key;
@@ -29,9 +30,33 @@ public class Project {
 	@Persistent
 	private Key managerKey;
 	
+	private String managerName;
+	
+	private String userTeam;
 	@Persistent
     private Set<Key> usersTeam;
 
+
+	
+	public String getManagerName() {
+		return managerName;
+	}
+
+	public void setManagerName(String managerName) {
+		this.managerName = managerName;
+	}
+
+	public String getUserTeam() {
+		return userTeam;
+	}
+
+	public void setUserTeam(String userTeam) {
+		if(this.userTeam != null && !this.userTeam.trim().equals("")){
+			this.userTeam = this.userTeam + ","+userTeam;
+			return;
+		}
+		this.userTeam = userTeam;
+	}
 
 	public Key getKey() {
 		return key;

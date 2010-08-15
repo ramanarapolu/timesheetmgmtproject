@@ -53,9 +53,18 @@
       <put-attribute name="body"   value="/WEB-INF/jsp/approveTime.jsp"/>     
   </definition>
     <definition name="createUser" extends="baseLayout">
-      <put-attribute name="title"  value="View timesheet"/>
+      <put-attribute name="title"  value="Create User"/>
       <put-attribute name="body"   value="/WEB-INF/jsp/createUser.jsp"/>     
   </definition>
+    <definition name="createUserTabbedPane" extends="baseLayout">
+      <put-attribute name="title"  value="Create users"/>
+      <put-attribute name="body"   value="/WEB-INF/jsp/createUserTabbedPane.jsp"/>     
+  </definition>
+  <definition name="showUserTabbedPane" extends="baseLayout">
+      <put-attribute name="title"  value="View users"/>
+      <put-attribute name="body"   value="/WEB-INF/jsp/showUserTabbedPane.jsp"/>     
+  </definition>
+  
   <definition name="createProject" extends="baseLayout">
       <put-attribute name="title"  value="Create project"/>
       <put-attribute name="body"   value="/WEB-INF/jsp/createProject.jsp"/>     

@@ -13,15 +13,27 @@
 </head>
 <body id="layout">
 
-<div id="bodyheader">Create Department</div><br></br>
+<div id="bodyheader">Create/Edit Department</div>
+<br></br>
 
 <div id="bodystyle"><s:actionerror /> 
 	<s:form action="createDepartment" method="post">
-	<s:textfield name="deptID" label="Department Code"></s:textfield>
+	
+	<s:if test="actionName=='editDepartment'">
+		<s:textfield name="deptID" label="Department Code" readonly="true"></s:textfield>
+	</s:if> 
+	<s:if test="actionName=='createDepartment'">
+		<s:textfield name="deptID" label="Department Code"></s:textfield>
+	</s:if>
+	
 	<s:textfield name="deptName" label="Department Name"></s:textfield>
-	<s:submit value="Create Department"></s:submit>
-	</s:form>
-</div>
+	<s:if test="actionName=='editDepartment'">
+		<s:submit name="actionName" value="Edit Department"></s:submit>
+	</s:if>
+	<s:if test="actionName=='createDepartment'">
+		<s:submit name="actionName" value="Create Department"></s:submit>
+	</s:if>
+</s:form></div>
 
 </body>
 </html>

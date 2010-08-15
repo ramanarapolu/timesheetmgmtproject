@@ -10,5 +10,5 @@
 	<resource-files>
         <include path="/jsp/prototype/prototype.js" />
     </resource-files>
-	
+	<precompilation-enabled>true</precompilation-enabled>
 </appengine-web-app>

@@ -1,10 +1,11 @@
 package com.herguan.cs562.model;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 
-public class TimesheetScreenVO {
+public class TimesheetScreenVO implements Serializable {
 
 	
 	private Integer employeeID;

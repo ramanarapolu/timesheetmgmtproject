@@ -29,6 +29,7 @@
 			<result name="success" type="tiles">home</result>
 			<result name="input" type="tiles">login</result>
 		</action>
+		
 		<action name="*Link" method="{1}"
 			class="com.herguan.cs562.action.LinkAction">
 			<result name="welcome" type="tiles">welcome</result>
@@ -59,12 +60,25 @@
 			class="com.herguan.cs562.action.TimesheetAction">
 			<result>/WEB-INF/jsp/viewAjaxTable.jsp</result>
 		</action>
-
-		<action name="createUser" method="createUser"
-			class="com.herguan.cs562.action.AdminAction">
-			<result name="User" type="tiles">createUser</result>
+		<action name="viewUsers" method="viewUsers" class="com.herguan.cs562.action.AdminAction">
+			<result>/WEB-INF/jsp/viewUsers.jsp</result>
 		</action>
-
+		<action name="createStudent" method="createStudent"
+			class="com.herguan.cs562.action.AdminAction">
+			<result name="User" type="tiles">home</result>
+		</action>
+		<action name="createStaff" method="createStaff"
+			class="com.herguan.cs562.action.AdminAction">
+			<result name="User" type="tiles">home</result>
+		</action>
+		<action name="showCreateUser" method="showCreateUserTabbedPane"
+			class="com.herguan.cs562.action.AdminAction">
+			<result name="User" type="tiles">createUserTabbedPane</result>
+		</action>
+		<action name="showUser" method="showUserTabbedPane"
+			class="com.herguan.cs562.action.AdminAction">
+			<result name="User" type="tiles">showUserTabbedPane</result>
+		</action>
 		<action name="createProject" method="createProject"
 			class="com.herguan.cs562.action.AdminAction">
 			<result name="Project" type="tiles">home</result>
@@ -79,6 +93,15 @@
 			<result name="Project" type="tiles">showProject</result>
 		</action>
 
+		<action name="editProject" method="editProject"
+			class="com.herguan.cs562.action.AdminAction">
+			<result name="Project" type="tiles">createProject</result>
+		</action>
+
+		<action name="editDepartment" method="editDepartment"
+			class="com.herguan.cs562.action.AdminAction">
+			<result name="Department" type="tiles">createDepartment</result>
+		</action>
 
 		<action name="createDepartment" method="createDepartment"
 			class="com.herguan.cs562.action.AdminAction">

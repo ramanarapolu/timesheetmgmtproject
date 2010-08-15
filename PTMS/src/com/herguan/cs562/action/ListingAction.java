@@ -1,12 +1,14 @@
 package com.herguan.cs562.action;
 
-import com.opensymphony.xwork2.ActionSupport;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.opensymphony.xwork2.ActionSupport;
 
 public class ListingAction extends ActionSupport {
 	private List lstList1 = null;
 
+	
 	public String execute() throws Exception {
 		populateDetail();
 		return SUCCESS;

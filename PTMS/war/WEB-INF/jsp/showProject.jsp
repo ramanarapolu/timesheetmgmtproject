@@ -14,6 +14,7 @@
 <body id="layout">
 <div id="bodyheader">View Projects</div><br></br>
 <div id="bodystyle">
+<s:if test="projects != null">
 <table id="datatable">
 	<tr>
 		<th><s:text name="Project Code" /></th>
@@ -26,16 +27,26 @@
 	<s:iterator value="projects" status="status">
 	
 		<tr class="<s:if test="#status.even">even</s:if><s:else>odd</s:else>">
-			<td class="nowrap"><s:property value="projectCode"/></td>
+		<td><a href="<s:url action="editProject">
+				<s:param name="projectID" value="projectCode"/>
+				<s:param name="projectName" value="projectName"/>
+				<s:param name="deptName" value="deptName"/>
+				</s:url>">
+					<s:property value="projectCode"/></a></td>
+			
 			<td class="nowrap"><s:property value="projectName"/></td>
-			<td class="nowrap"><s:property value="managerKey"/></td>
-			<td class="nowrap"><s:property value="usersTeam"/></td>
+			<td class="nowrap"><s:property value="managerName"/></td>
+			<td class="nowrap"><s:property value="userTeam"/></td>
 			<td class="nowrap"><s:property value="deptName"/></td>
 			
 		</tr>
 	</s:iterator>
 </table>
+</s:if>
 <br></br>
+<s:else>
+No projects in the system.
+</s:else>
 
 </div>
 
