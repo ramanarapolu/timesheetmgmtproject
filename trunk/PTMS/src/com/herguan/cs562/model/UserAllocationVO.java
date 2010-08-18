@@ -1,10 +1,11 @@
 package com.herguan.cs562.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.google.appengine.api.datastore.Key;
 
-public class UserAllocationVO {
+public class UserAllocationVO implements Serializable{
 	
 	private Key userKey;
 	private String firstName;
