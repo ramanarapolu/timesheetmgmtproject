@@ -21,7 +21,7 @@
 					<s:textfield name="user.firstName" label="First Name"></s:textfield>
 					<s:textfield name="user.lastName" label="Last Name"></s:textfield>
 					<s:textfield name="user.login" label="Login"></s:textfield>
-					<s:textfield name="user.password" label="Password"></s:textfield>
+					<s:password name="user.password" label="Password"></s:password>
 					<s:textfield name="user.studentID" label="Student ID"></s:textfield>
 					<s:textfield name="user.programID" label="Program ID"></s:textfield>
 					<s:textfield name="user.programName" label="Program Name"></s:textfield>
@@ -48,7 +48,7 @@
 					<s:textfield name="user.firstName" label="First Name"></s:textfield>
 					<s:textfield name="user.lastName" label="Last Name"></s:textfield>
 					<s:textfield name="user.login" label="Login"></s:textfield>
-					<s:textfield name="user.password" label="Password"></s:textfield>
+					<s:password name="user.password" label="Password"></s:password>
 					<s:textfield name="user.employeeID" label="Employee ID"></s:textfield>
 					<s:select label="Department" name="deptID" list="departments"
 						listKey="deptCode" listValue="%{deptCode + '-' +deptName}"  required="true"

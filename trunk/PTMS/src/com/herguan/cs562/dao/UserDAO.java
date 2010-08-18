@@ -51,7 +51,12 @@ public class UserDAO {
 			if (results.iterator().hasNext() && results.size() == 1) {
 
 				for (User u : results) {
-					user = u;
+					if (u.getLogin().equalsIgnoreCase(username)
+							&& u.getPassword().equals(password)) {
+						user = u;
+					}else{
+						user = null;
+					}
 
 				}
 			}

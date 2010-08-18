@@ -17,6 +17,10 @@
 		<action name="HelloWorld" class="com.herguan.cs562.action.HelloWorld">
 			<result>/WEB-INF/helloworld.jsp</result>
 		</action>
+		<action name="approveTimeDB" method="approveTimeDB"
+			class="com.herguan.cs562.action.TimesheetAction">
+			<result name="success" type="tiles">home</result>
+		</action>
 		<action name="preload" method="preload"
 			class="com.herguan.cs562.action.Preload">
 			<result name="success" type="tiles">home</result>
@@ -28,6 +32,9 @@
 		<action name="home" method="login" class="com.herguan.cs562.action.Login">
 			<result name="success" type="tiles">home</result>
 			<result name="input" type="tiles">login</result>
+		</action>
+		<action name="approveTimesheets" method="approveTimesheets" class="com.herguan.cs562.action.TimesheetAction">
+			<result name="success" type="tiles">approveTimesheets</result>
 		</action>
 		
 		<action name="*Link" method="{1}"

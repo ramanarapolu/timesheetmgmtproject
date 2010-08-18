@@ -69,7 +69,7 @@
 }
 
 #header {
-	font-size: 20px;color:white;
+	font-size: 20px;
 	background-color: #b0c4de;
 	background-image: url(../images/ptms_logo.jpg);
 	background-repeat: no-repeat;
@@ -78,8 +78,7 @@ background-position: left 0;
 	width: 100%;
 	text-align: center;
 	vertical-align: middle;
-	border-style: solid;
-	border-width: 5px;
+	
 }
 
 .headerheight {

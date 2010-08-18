@@ -31,7 +31,8 @@
 
 
 						<s:iterator value="allUsers" status="status">
-						<s:if test="role=='Student'">
+						<s:if test="role=='Student'" >
+						<!-- "%{typeAsString=='BOOL'} || %{typeAsString=='ENUM'}" "role=='Student'"-->
 						
 							<tr>
 								<td class="nowrap"><s:property
@@ -69,8 +70,8 @@
 
 
 						<s:iterator value="allUsers" status="status">
-						<s:if test="role=='Staff'">
-						
+						<s:if test= "%{role=='Staff' || role=='Supervisor'}">
+							<!-- "%{typeAsString=='BOOL'} || %{typeAsString=='ENUM'}" "role=='Student'"-->
 							<tr>
 								<td class="nowrap"><s:property	value="firstName" /></td>
 								<td class="nowrap"><s:property value="lastName" /></td>

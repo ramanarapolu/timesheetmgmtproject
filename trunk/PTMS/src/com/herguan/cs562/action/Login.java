@@ -35,7 +35,7 @@ public class Login extends ActionSupport {
 			return SUCCESS;
 		}
 
-		addActionError("Username and Password Combination doesnot match.");
+		addActionError("Username and Password Combination does not match.");
 		return INPUT;
 	}
 
