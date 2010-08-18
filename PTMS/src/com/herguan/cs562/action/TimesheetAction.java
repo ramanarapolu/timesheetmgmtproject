@@ -6,7 +6,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,21 +13,61 @@ import org.apache.struts2.ServletActionContext;
 
 import com.google.appengine.api.datastore.KeyFactory;
 import com.herguan.cs562.dao.TimesheetDAO;
+import com.herguan.cs562.model.ApproveTimesheetScreenVO;
 import com.herguan.cs562.model.Timesheet;
 import com.herguan.cs562.model.TimesheetAllocationVO;
 import com.herguan.cs562.model.TimesheetScreenVO;
 import com.herguan.cs562.model.TimesheetStatusEnum;
 import com.herguan.cs562.model.User;
+import com.herguan.cs562.model.UserAllocationVO;
 import com.herguan.cs562.model.ViewTimesheetScreenVO;
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class TimesheetAction extends ActionSupport {
 	private static final long serialVersionUID = -2613425890762568273L;
 
 	private TimesheetScreenVO timesheetScreenVO;
+	private ApproveTimesheetScreenVO approveTimesheetScreenVO;
 	private ViewTimesheetScreenVO viewTimesheetScreenVO;
 	private TimesheetAllocationVO timesheetAllocationVO;
+	private List<ApproveTimesheetScreenVO> approveTSList;
+	
+	private List<UserAllocationVO> userAllocList;
+	
+	
+	public List<UserAllocationVO> getUserAllocList() {
+		return userAllocList;
+	}
+
+	public void setUserAllocList(List<UserAllocationVO> userAllocList) {
+		this.userAllocList = userAllocList;
+	}
+
+	public ApproveTimesheetScreenVO getApproveTimesheetScreenVO() {
+		return approveTimesheetScreenVO;
+	}
+
+	public void setApproveTimesheetScreenVO(
+			ApproveTimesheetScreenVO approveTimesheetScreenVO) {
+		this.approveTimesheetScreenVO = approveTimesheetScreenVO;
+	}
+
+	public List<ApproveTimesheetScreenVO> getApproveTSList() {
+		return approveTSList;
+	}
+
+	public void setApproveTSList(List<ApproveTimesheetScreenVO> approveTSList) {
+		this.approveTSList = approveTSList;
+	}
+
+	public ApproveTimesheetScreenVO getApproveTimesheeScreenVO() {
+		return approveTimesheetScreenVO;
+	}
+
+	public void setApproveTimesheeScreenVO(
+			ApproveTimesheetScreenVO approveTimesheetScreenVO) {
+		this.approveTimesheetScreenVO = approveTimesheetScreenVO;
+	}
 
 	public TimesheetAllocationVO getTimesheetAllocationVO() {
 		return timesheetAllocationVO;
@@ -166,10 +205,58 @@ public class TimesheetAction extends ActionSupport {
 	public void setTimesheetScreenVO(TimesheetScreenVO timesheetScreenVO) {
 		this.timesheetScreenVO = timesheetScreenVO;
 	}
+	
+	private String projectID;
+	
 
+	public String getProjectID() {
+		return projectID;
+	}
+
+	public void setProjectID(String projectID) {
+		this.projectID = projectID;
+	}
+
+	public String approveTimeDB() {
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		
+		userAllocList =(List<UserAllocationVO>) session.getAttribute("userAllocList");
+		System.out.println("user in session : " + projectID);
+		addActionMessage("Timesheet is approved");
+		
+		TimesheetDAO.updateTimesheets(userAllocList);
+		return SUCCESS;
+
+	}
+	
+	public String approveTimesheets() {
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		System.out.println("user in session : " + projectID);
+		approveTSList =(List<ApproveTimesheetScreenVO>) session.getAttribute("approveList");
+		ApproveTimesheetScreenVO approveTimesheetScreenVO = null;
+		if(approveTSList != null && approveTSList.size() >0){
+			for (Iterator<ApproveTimesheetScreenVO> it = approveTSList.iterator(); it.hasNext();) {
+				approveTimesheetScreenVO = it.next();
+				if(approveTimesheetScreenVO.getProjectCode().equals(projectID)){
+					userAllocList = approveTimesheetScreenVO.getProjectUserMap().get(approveTimesheetScreenVO.getProjectKey());
+					System.out.println("user alloc in approve "+userAllocList);
+					
+					session.setAttribute("userAllocList", userAllocList);
+					
+				}
+			}
+		}
+		//userAllocList = 
+		//System.out.println("approve user in session : " + approveTSList);
+		
+		return SUCCESS;
+
+	}
+	
 	public String view() {
 		HttpSession session = ServletActionContext.getRequest().getSession();
 		System.out.println("user in session : " + session.getAttribute(("User")));
+		
 		user = (User) session.getAttribute("User");
 		viewTimesheetScreenVO = TimesheetDAO.getViewTimesheetScreenVO(user);
 		if (viewTimesheetScreenVO != null) {
@@ -450,6 +537,13 @@ public class TimesheetAction extends ActionSupport {
 	}
 
 	public String approve() {
+		
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		System.out.println("approve user in session : " + session.getAttribute("User"));
+		user = (User) session.getAttribute("User");
+
+		approveTSList = TimesheetDAO.getApproveTimesheetScreenVO(user);
+		session.setAttribute("approveList", approveTSList);
 		return "approve";
 	}
 

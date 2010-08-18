@@ -14,17 +14,20 @@ Timesheet for the week of <s:property value="chosenWeek" />
 		<th><s:text name="Thursday" /></th>
 		<th><s:text name="Friday" /></th>
 		<th><s:text name="Saturday" /></th>
+		<th><s:text name="Status" /></th>
 	</tr>
 	<tr>
 	
-		<td><s:text name="timesheetAllocationVO.projectDisplay"></s:text></td>
-		<td><s:text name="%{timesheetAllocationVO.sundayHours}"/></td>
-		<td><s:text name="%{timesheetAllocationVO.mondayHours}"/></td>
-		<td><s:text name="%{timesheetAllocationVO.tuesdayHours}"/></td>
-		<td><s:text name="%{timesheetAllocationVO.wednesdayHours}" /></td>
-		<td><s:text name="%{timesheetAllocationVO.thursdayHours}"/></td>
-		<td><s:text name="%{timesheetAllocationVO.fridayHours}"/></td>
-		<td><s:text name="%{timesheetAllocationVO.saturdayHours}" /></td>
+		<td><s:text name="timesheetAllocationVO.projectDisplay" ></s:text></td>
+		<td><s:property value="%{timesheetAllocationVO.sundayHours}" default="0"/></td>
+		<td><s:property value="%{timesheetAllocationVO.mondayHours}" default="0"/></td>
+		<td><s:property value="%{timesheetAllocationVO.tuesdayHours}" default="0"/></td>
+		<td><s:property value="%{timesheetAllocationVO.wednesdayHours}" default="0"/></td>
+		<td><s:property value="%{timesheetAllocationVO.thursdayHours}" default="0"/></td>
+		<td><s:property value="%{timesheetAllocationVO.fridayHours}" default="0"/></td>
+		<td><s:property value="%{timesheetAllocationVO.saturdayHours}" default="0"/></td>
+		<td><s:property value="%{timesheetAllocationVO.timesheet_status}" /></td>
+		
 	</tr>
 
 </table>

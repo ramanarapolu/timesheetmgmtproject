@@ -13,8 +13,9 @@ import="com.herguan.cs562.model.User"
 
 <% System.out.println("in jsp " +((User)session.getAttribute("User")).getFirstName());%>
 
-<div id="menustyle"><b>Hello <%= ((User)session.getAttribute("User")).getFirstName() %>!</b>
-<b>Hello <%= ((User)session.getAttribute("User")).getRole() %>!</b>
+<div id="menustyle"><b>Welcome <%= ((User)session.getAttribute("User")).getFirstName() %>!</b>
+<br></br>
+<b>Role(<%= ((User)session.getAttribute("User")).getRole() %>)!</b>
 
 <ul>
 	<%if(((User)session.getAttribute("User")).getRole().equals("Student") ||
