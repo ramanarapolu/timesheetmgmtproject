@@ -1,11 +1,12 @@
 package com.herguan.cs562.model;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 import com.google.appengine.api.datastore.Key;
 
-public class ApproveTimesheetScreenVO {
+public class ApproveTimesheetScreenVO implements Serializable{
 
 	private Key projectKey;
 	private String projectName;
